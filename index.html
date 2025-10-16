@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vehicle Cluster</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Vehicle Cluster</h1>
+    <span class="pill">Analog Dials • Center Display</span>
+  </header>
+
+  <main class="cluster">
+    <!-- Left dial: RPM -->
+    <section class="dial" id="rpmDial" aria-label="tachometer">
+      <div class="dial-face dial-grid"></div>
+      <ul class="nums">
+        <li style="--a:-120deg">0</li>
+        <li style="--a:-90deg">1</li>
+        <li style="--a:-60deg">2</li>
+        <li style="--a:-30deg">3</li>
+        <li style="--a:0deg">4</li>
+        <li style="--a:30deg">5</li>
+        <li style="--a:60deg">6</li>
+        <li style="--a:90deg">7</li>
+        <li style="--a:120deg">8</li>
+      </ul>
+      <ul class="nums">
+        <li style="--a:-120deg">0</li>
+        <li style="--a:-80deg">30</li>
+        <li style="--a:-40deg">60</li>
+        <li style="--a:0deg">90</li>
+        <li style="--a:40deg">120</li>
+        <li style="--a:80deg">150</li>
+        <li style="--a:120deg">180</li>
+      </ul>
+
+
+      <div class="dial-center"></div>
+      <div class="needle" id="rpmNeedle" aria-hidden="true"></div>
+
+      <div class="dial-label">
+        <span>x1000 rpm</span>
+      </div>
+
+      <!-- warning lights ring (left) -->
+      <ul class="warns">
+        <li id="w-oil"   class="warn red">OIL</li>
+        <li id="w-batt"  class="warn red">BAT</li>
+        <li id="w-brake" class="warn red">BRAKE</li>
+        <li id="w-abs"   class="warn amb">ABS</li>
+      </ul>
+    </section>
+
+    <!-- Center info display -->
+    <section class="center">
+      <div class="lcd">
+        <div class="car-silhouette">
+          <div class="tire tl"></div><div class="tire tr"></div>
+          <div class="tire bl"></div><div class="tire br"></div>
+        </div>
+        <div class="lcd-rows">
+          <div class="row"><span>ODO</span><strong id="odoVal">0.0</strong><span>km</span></div>
+          <div class="row"><span>RANGE</span><strong id="rangeVal">0</strong><span>km</span></div>
+          <div class="row"><span>FUEL</span><strong id="fuelVal">0.0</strong><span>L</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right dial: SPEED -->
+    <section class="dial" id="speedDial" aria-label="speedometer">
+      <div class="dial-face dial-grid"></div>
+      <div class="dial-center"></div>
+      <div class="needle" id="speedNeedle" aria-hidden="true"></div>
+
+      <div class="dial-label">
+        <span>km/h</span>
+      </div>
+
+      <!-- warning lights ring (right) -->
+      <ul class="warns">
+        <li id="w-fuel"  class="warn amb">FUEL</li>
+        <li id="w-air"   class="warn amb">AIRBAG</li>
+        <li id="w-tc"    class="warn amb">TCS</li>
+        <li id="w-seat"  class="warn red">BELT</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- controls (unchanged behavior) -->
+  <section class="card controls">
+    <div class="row">
+      <button id="btnEngine" class="btn">Start Engine</button>
+      <button id="btnLights" class="btn">Toggle Lights</button>
+    </div>
+    <div class="row">
+      <button id="btnBrake" class="btn">Brake -10</button>
+      <button id="btnAccel" class="btn accent">Accelerate +10</button>
+    </div>
+    <div class="row">
+      <button id="btnRefuel" class="btn">Refuel +10L</button>
+      <select id="vehicleSelect" class="select">
+        <option value="car" selected>Car</option>
+        <option value="motorcycle">Motorcycle</option>
+        <option value="suv">SUV</option>
+      </select>
+      <p id="toast" class="toast" hidden></p>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <small>Design: analog cluster • JS modules unchanged</small>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
